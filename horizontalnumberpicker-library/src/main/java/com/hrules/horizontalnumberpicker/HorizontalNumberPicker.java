@@ -28,7 +28,7 @@ public class HorizontalNumberPicker extends LinearLayout {
 
     private Button buttonMinus;
     private Button buttonPlus;
-    private TextView textValue;
+    private TextView textValue, textValueDescription;
     private CardView cardView;
     private boolean autoIncrement;
     private boolean autoDecrement;
@@ -113,6 +113,7 @@ public class HorizontalNumberPicker extends LinearLayout {
 
     private void initTextValue() {
         textValue = (TextView) findViewById(R.id.text_value);
+        textValueDescription = (TextView) findViewById(R.id.text_description);
     }
 
     public void setButtonTextColor(int color) {
@@ -127,6 +128,7 @@ public class HorizontalNumberPicker extends LinearLayout {
 
     public void setNumberTextSize(int size) {
         textValue.setTextSize(TypedValue.COMPLEX_UNIT_DIP, size);
+        textValueDescription.setTextSize(TypedValue.COMPLEX_UNIT_DIP, size - 2);
     }
 
     public void setButtonTextSize(int size) {
@@ -222,13 +224,16 @@ public class HorizontalNumberPicker extends LinearLayout {
 
     public void setNumberTextColor(int color) {
         textValue.setTextColor(color);
+        textValueDescription.setTextColor(color);
     }
 
     public void setNumberTextBold(boolean makeBold) {
         if (makeBold) {
             textValue.setTypeface(null, Typeface.BOLD);
+            textValueDescription.setTypeface(null, Typeface.BOLD);
         } else {
             textValue.setTypeface(null, Typeface.NORMAL);
+            textValueDescription.setTypeface(null, Typeface.NORMAL);
         }
     }
 
@@ -266,6 +271,10 @@ public class HorizontalNumberPicker extends LinearLayout {
         if (listener != null) {
             listener.onHorizontalNumberPickerChanged(this, value);
         }
+    }
+
+    public void setValueDescription(String text) {
+        textValueDescription.setText(text);
     }
 
     public int getMaxValue() {
@@ -326,6 +335,7 @@ public class HorizontalNumberPicker extends LinearLayout {
     public void setListener(HorizontalNumberPickerListener listener) {
         this.listener = listener;
     }
+
 
     private class repeat implements Runnable {
         public void run() {
