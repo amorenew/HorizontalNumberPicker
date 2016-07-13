@@ -11,13 +11,19 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/button_minus"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="60dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center"
+            android:textAlignment="gravity"
             tools:text="-" />
 
         <TextView
@@ -25,15 +31,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight="0"
             android:gravity="center"
-            tools:text="0" />
+            tools:text="2334234" />
 
         <Button
             android:id="@+id/button_plus"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minWidth="50dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center"
+            android:textAlignment="gravity"
             tools:text="+" />
     </LinearLayout>
 </android.support.v7.widget.CardView>
