@@ -272,6 +272,11 @@ public class HorizontalNumberPicker extends LinearLayout {
         }
     }
 
+    public void reset() {
+        value = minValue;
+        this.setValue();
+    }
+
     public int getMinValue() {
         return minValue;
     }
