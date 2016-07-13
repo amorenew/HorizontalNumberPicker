@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Handler;
@@ -69,43 +70,65 @@ public class HorizontalNumberPicker extends LinearLayout {
         layoutInflater.inflate(R.layout.horizontal_number_picker, this);
         cardView = (CardView) findViewById(R.id.card_view);
         TypedArray typedArray =
-                context.obtainStyledAttributes(attrs, R.styleable.HorizontalNumberPicker);
+                context.obtainStyledAttributes(attrs, R.styleable.NumberPicker);
         Resources res = getResources();
 
-        String buttonPlusText = typedArray.getString(R.styleable.HorizontalNumberPicker_plusButtonText);
+        String buttonPlusText = typedArray.getString(R.styleable.NumberPicker_plusButtonText);
         initButtonPlus(
                 buttonPlusText != null ? buttonPlusText : res.getString(R.string.defaultButtonPlus));
 
         String buttonMinusText =
-                typedArray.getString(R.styleable.HorizontalNumberPicker_minusButtonText);
+                typedArray.getString(R.styleable.NumberPicker_minusButtonText);
         initButtonMinus(
                 buttonMinusText != null ? buttonMinusText : res.getString(R.string.defaultButtonMinus));
 
-        minValue = typedArray.getInt(R.styleable.HorizontalNumberPicker_minValue,
+        minValue = typedArray.getInt(R.styleable.NumberPicker_minValue,
                 res.getInteger(R.integer.default_minValue));
-        maxValue = typedArray.getInt(R.styleable.HorizontalNumberPicker_maxValue,
+        maxValue = typedArray.getInt(R.styleable.NumberPicker_maxValue,
                 res.getInteger(R.integer.default_maxValue));
 
-        updateInterval = typedArray.getInt(R.styleable.HorizontalNumberPicker_repeatDelay,
+        updateInterval = typedArray.getInt(R.styleable.NumberPicker_repeatDelay,
                 res.getInteger(R.integer.default_updateInterval));
-        stepSize = typedArray.getInt(R.styleable.HorizontalNumberPicker_stepSize,
+        stepSize = typedArray.getInt(R.styleable.NumberPicker_stepSize,
                 res.getInteger(R.integer.default_stepSize));
-        showLeadingZeros = typedArray.getBoolean(R.styleable.HorizontalNumberPicker_showLeadingZeros,
+        showLeadingZeros = typedArray.getBoolean(R.styleable.NumberPicker_showLeadingZeros,
                 res.getBoolean(R.bool.default_showLeadingZeros));
 
         initTextValue();
-        String valueDescriptionText = typedArray.getString(R.styleable.HorizontalNumberPicker_valueDescription);
+        String valueDescriptionText = typedArray.getString(R.styleable.NumberPicker_valueDescription);
         textValueDescription.setText(valueDescriptionText);
-        value = typedArray.getInt(R.styleable.HorizontalNumberPicker_value,
+        value = typedArray.getInt(R.styleable.NumberPicker_value,
                 res.getInteger(R.integer.default_value));
         typedArray.recycle();
-
+        int pickerBackgroundColor = typedArray.getColor(R.styleable.NumberPicker_pickerBackgroundColor, Color.WHITE);
+        setBackgroundColor(pickerBackgroundColor);
+        int numberTextColor = typedArray.getColor(R.styleable.NumberPicker_numberTextColor, Color.BLACK);
+        setNumberTextColor(numberTextColor);
+        int buttonTextColor = typedArray.getColor(R.styleable.NumberPicker_buttonTextColor, Color.BLACK);
+        setButtonTextColor(buttonTextColor);
+        int numberBackgroundColor = typedArray.getColor(R.styleable.NumberPicker_numberBackgroundColor, 0);
+        setNumberBackgroundColor(numberBackgroundColor);
+        int buttonBackgroundColor = typedArray.getColor(R.styleable.NumberPicker_buttonBackgroundColor, 0);
+        setButtonBackgroundColor(buttonBackgroundColor);
+        boolean numberTextBold = typedArray.getBoolean(R.styleable.NumberPicker_numberTextBold, true);
+        setNumberTextBold(numberTextBold);
+        boolean buttonTextBold = typedArray.getBoolean(R.styleable.NumberPicker_buttonTextBold, true);
+        setButtonBold(buttonTextBold);
+        int numberTextSize = typedArray.getInteger(R.styleable.NumberPicker_numberTextSize, 14);
+        setNumberTextSize(numberTextSize);
+        int buttonTextSize = typedArray.getInteger(R.styleable.NumberPicker_buttonTextSize, 14);
+        setButtonTextSize(buttonTextSize);
         this.setValue();
 
         autoIncrement = false;
         autoDecrement = false;
 
         updateIntervalHandler = new Handler();
+    }
+
+    private void setNumberBackgroundColor(int numberBackgroundColor) {
+        textValue.setBackgroundColor(numberBackgroundColor);
+        textValueDescription.setBackgroundColor(numberBackgroundColor);
     }
 
     @Override
