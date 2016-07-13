@@ -94,6 +94,8 @@ public class HorizontalNumberPicker extends LinearLayout {
                 res.getBoolean(R.bool.default_showLeadingZeros));
 
         initTextValue();
+        String valueDescriptionText = typedArray.getString(R.styleable.HorizontalNumberPicker_valueDescription);
+        textValueDescription.setText(valueDescriptionText);
         value = typedArray.getInt(R.styleable.HorizontalNumberPicker_value,
                 res.getInteger(R.integer.default_value));
         typedArray.recycle();
