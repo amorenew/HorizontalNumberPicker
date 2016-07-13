@@ -204,6 +204,14 @@ public class HorizontalNumberPicker extends LinearLayout {
         return buttonMinus;
     }
 
+    public void setMinuText(String text) {
+        buttonMinus.setText(text);
+    }
+
+    public void setPlusText(String text) {
+        buttonPlus.setText(text);
+    }
+
     public Button getButtonPlusView() {
         return buttonPlus;
     }

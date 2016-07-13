@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity implements HorizontalNumberP
 
         horizontalNumberPicker1.setMaxValue(5);
 
-        horizontalNumberPicker2.getButtonMinusView().setText("<");
-        horizontalNumberPicker2.getButtonPlusView().setText(">");
+        horizontalNumberPicker2.setMinuText("<");
+        horizontalNumberPicker2.setPlusText(">");
         horizontalNumberPicker2.setShowLeadingZeros(true);
         horizontalNumberPicker2.setValue(23);
         horizontalNumberPicker3.setBackgroundColor(parseColor("#1565C0"));
