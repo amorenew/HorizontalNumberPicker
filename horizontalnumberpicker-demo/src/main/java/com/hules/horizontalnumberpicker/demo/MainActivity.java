@@ -28,19 +28,18 @@ public class MainActivity extends AppCompatActivity implements HorizontalNumberP
         ButterKnife.bind(this);
 
         horizontalNumberPicker1.setMaxValue(5);
-
-        horizontalNumberPicker2.setMinuText("<");
-        horizontalNumberPicker2.setPlusText(">");
+        horizontalNumberPicker2.setButtonMinusText("<");
+        horizontalNumberPicker2.setButtonPlusText(">");
         horizontalNumberPicker2.setShowLeadingZeros(true);
         horizontalNumberPicker2.setValue(23);
-        horizontalNumberPicker3.setValueDescription("Kid");
-        horizontalNumberPicker3.setBackgroundColor(parseColor("#1565C0"));
-        horizontalNumberPicker3.setNumberTextColor(Color.WHITE);
-        horizontalNumberPicker3.setNumberTextBold(true);
-        horizontalNumberPicker3.setNumberTextSize(18);
-        horizontalNumberPicker3.setButtonTextColor(Color.WHITE);
-        horizontalNumberPicker3.setButtonTextSize(20);
-        horizontalNumberPicker3.setButtonBold(true);
+//        horizontalNumberPicker3.setValueDescription("Kid");
+//        horizontalNumberPicker3.setBackgroundColor(parseColor("#1565C0"));
+//        horizontalNumberPicker3.setNumberTextColor(Color.WHITE);
+//        horizontalNumberPicker3.setNumberTextBold(true);
+//        horizontalNumberPicker3.setNumberTextSize(18);
+//        horizontalNumberPicker3.setButtonTextColor(Color.WHITE);
+//        horizontalNumberPicker3.setButtonTextSize(20);
+//        horizontalNumberPicker3.setButtonBold(true);
         horizontalNumberPicker1.setListener(this);
         horizontalNumberPicker2.setListener(this);
         horizontalNumberPicker3.setListener(this);

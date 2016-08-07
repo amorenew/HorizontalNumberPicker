@@ -12,12 +12,17 @@
         <attr name="showLeadingZeros" format="boolean" />
         <attr name="pickerBackgroundColor" format="color" />
         <attr name="numberBackgroundColor" format="color" />
+        <attr name="descriptionBackgroundColor" format="color" />
         <attr name="buttonBackgroundColor" format="color" />
         <attr name="numberTextColor" format="color" />
+        <attr name="descriptionTextColor" format="color" />
         <attr name="buttonTextColor" format="color" />
         <attr name="numberTextBold" format="boolean" />
+        <attr name="descriptionTextBold" format="boolean" />
         <attr name="buttonTextBold" format="boolean" />
         <attr name="numberTextSize" format="integer" />
+        <attr name="descriptionTextSize" format="integer" />
         <attr name="buttonTextSize" format="integer" />
+        <attr name="titleUp" format="boolean" />
     </declare-styleable>
 </resources>

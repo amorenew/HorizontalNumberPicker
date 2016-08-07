@@ -30,7 +30,8 @@ public class HorizontalNumberPicker extends LinearLayout {
     private Button buttonMinus;
     private Button buttonPlus;
     private TextView textValue, textValueDescription;
-    private CardView cardView;
+    private CardView mainView;
+    private LinearLayout mainView2;
     private boolean autoIncrement;
     private boolean autoDecrement;
 
@@ -39,6 +40,7 @@ public class HorizontalNumberPicker extends LinearLayout {
     private Handler updateIntervalHandler;
 
     private HorizontalNumberPickerListener listener;
+    private boolean isTitleUp;
 
     public HorizontalNumberPicker(Context context) {
         this(context, null);
@@ -61,16 +63,23 @@ public class HorizontalNumberPicker extends LinearLayout {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        if (isInEditMode()) {
-            return;
-        }
-
+        //if (isInEditMode()) {
+        //    return;
+        //}
         LayoutInflater layoutInflater =
                 (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        layoutInflater.inflate(R.layout.horizontal_number_picker, this);
-        cardView = (CardView) findViewById(R.id.card_view);
+
         TypedArray typedArray =
                 context.obtainStyledAttributes(attrs, R.styleable.NumberPicker);
+        isTitleUp = typedArray.getBoolean(R.styleable.NumberPicker_titleUp, false);
+
+        if (isTitleUp) {
+            layoutInflater.inflate(R.layout.horizontal_number_picker_title_up, this);
+            mainView2 = (LinearLayout) findViewById(R.id.mainView);
+        } else {
+            layoutInflater.inflate(R.layout.horizontal_number_picker, this);
+            mainView = (CardView) findViewById(R.id.mainView);
+        }
         Resources res = getResources();
 
         String buttonPlusText = typedArray.getString(R.styleable.NumberPicker_plusButtonText);
@@ -99,27 +108,34 @@ public class HorizontalNumberPicker extends LinearLayout {
         textValueDescription.setText(valueDescriptionText);
         value = typedArray.getInt(R.styleable.NumberPicker_value,
                 res.getInteger(R.integer.default_value));
-        typedArray.recycle();
         int pickerBackgroundColor = typedArray.getColor(R.styleable.NumberPicker_pickerBackgroundColor, Color.WHITE);
         setBackgroundColor(pickerBackgroundColor);
         int numberTextColor = typedArray.getColor(R.styleable.NumberPicker_numberTextColor, Color.BLACK);
+        int descriptionTextColor = typedArray.getColor(R.styleable.NumberPicker_descriptionTextColor, Color.BLACK);
         setNumberTextColor(numberTextColor);
+        setDescriptionTextColor(descriptionTextColor);
         int buttonTextColor = typedArray.getColor(R.styleable.NumberPicker_buttonTextColor, Color.BLACK);
         setButtonTextColor(buttonTextColor);
-        int numberBackgroundColor = typedArray.getColor(R.styleable.NumberPicker_numberBackgroundColor, 0);
+        int numberBackgroundColor = typedArray.getColor(R.styleable.NumberPicker_numberBackgroundColor, -1);
+        int descriptionBackgroundColor = typedArray.getColor(R.styleable.NumberPicker_descriptionBackgroundColor, -1);
         setNumberBackgroundColor(numberBackgroundColor);
-        int buttonBackgroundColor = typedArray.getColor(R.styleable.NumberPicker_buttonBackgroundColor, 0);
+        setDescriptionBackgroundColor(descriptionBackgroundColor);
+        int buttonBackgroundColor = typedArray.getColor(R.styleable.NumberPicker_buttonBackgroundColor, -1);
         setButtonBackgroundColor(buttonBackgroundColor);
         boolean numberTextBold = typedArray.getBoolean(R.styleable.NumberPicker_numberTextBold, true);
+        boolean descriptionTextBold = typedArray.getBoolean(R.styleable.NumberPicker_descriptionTextBold, true);
         setNumberTextBold(numberTextBold);
+        setDescriptionTextBold(descriptionTextBold);
         boolean buttonTextBold = typedArray.getBoolean(R.styleable.NumberPicker_buttonTextBold, true);
         setButtonBold(buttonTextBold);
         int numberTextSize = typedArray.getInteger(R.styleable.NumberPicker_numberTextSize, 14);
+        int descriptionTextSize = typedArray.getInteger(R.styleable.NumberPicker_descriptionTextSize, 14);
         setNumberTextSize(numberTextSize);
+        setDescriptionTextSize(descriptionTextSize);
         int buttonTextSize = typedArray.getInteger(R.styleable.NumberPicker_buttonTextSize, 14);
         setButtonTextSize(buttonTextSize);
         this.setValue();
-
+        typedArray.recycle();
         autoIncrement = false;
         autoDecrement = false;
 
@@ -127,13 +143,22 @@ public class HorizontalNumberPicker extends LinearLayout {
     }
 
     private void setNumberBackgroundColor(int numberBackgroundColor) {
-        textValue.setBackgroundColor(numberBackgroundColor);
-        textValueDescription.setBackgroundColor(numberBackgroundColor);
+        if (numberBackgroundColor > 0)
+            textValue.setBackgroundColor(numberBackgroundColor);
+    }
+
+    private void setDescriptionBackgroundColor(int descriptionBackgroundColor) {
+        if (descriptionBackgroundColor > 0)
+            textValueDescription.setBackgroundColor(descriptionBackgroundColor);
     }
 
     @Override
     public void setBackgroundColor(int color) {
-        cardView.setCardBackgroundColor(color);
+        if (isTitleUp) {
+            mainView2.setBackgroundColor(color);
+        } else {
+            mainView.setCardBackgroundColor(color);
+        }
     }
 
     private void initTextValue() {
@@ -147,12 +172,19 @@ public class HorizontalNumberPicker extends LinearLayout {
     }
 
     public void setButtonBackgroundColor(int color) {
-        buttonMinus.setBackgroundColor(color);
-        buttonPlus.setBackgroundColor(color);
+/*        if (color == 0 && isTitleUp) {
+        } else*/
+        if (color > 0) {
+            buttonMinus.setBackgroundColor(color);
+            buttonPlus.setBackgroundColor(color);
+        }
     }
 
     public void setNumberTextSize(int size) {
         textValue.setTextSize(TypedValue.COMPLEX_UNIT_DIP, size);
+    }
+
+    public void setDescriptionTextSize(int size) {
         textValueDescription.setTextSize(TypedValue.COMPLEX_UNIT_DIP, size - 2);
     }
 
@@ -231,11 +263,11 @@ public class HorizontalNumberPicker extends LinearLayout {
         return buttonMinus;
     }
 
-    public void setMinuText(String text) {
+    public void setButtonMinusText(String text) {
         buttonMinus.setText(text);
     }
 
-    public void setPlusText(String text) {
+    public void setButtonPlusText(String text) {
         buttonPlus.setText(text);
     }
 
@@ -249,15 +281,24 @@ public class HorizontalNumberPicker extends LinearLayout {
 
     public void setNumberTextColor(int color) {
         textValue.setTextColor(color);
+    }
+
+    public void setDescriptionTextColor(int color) {
         textValueDescription.setTextColor(color);
     }
 
     public void setNumberTextBold(boolean makeBold) {
         if (makeBold) {
             textValue.setTypeface(null, Typeface.BOLD);
-            textValueDescription.setTypeface(null, Typeface.BOLD);
         } else {
             textValue.setTypeface(null, Typeface.NORMAL);
+        }
+    }
+
+    public void setDescriptionTextBold(boolean makeBold) {
+        if (makeBold) {
+            textValueDescription.setTypeface(null, Typeface.BOLD);
+        } else {
             textValueDescription.setTypeface(null, Typeface.NORMAL);
         }
     }
