@@ -98,7 +98,7 @@ public class HorizontalNumberPicker extends LinearLayout {
 
         updateInterval = typedArray.getInt(R.styleable.NumberPicker_repeatDelay,
                 res.getInteger(R.integer.default_updateInterval));
-        stepSize = typedArray.getInt(R.styleable.NumberPicker_stepSize,
+        stepSize = typedArray.getInt(R.styleable.NumberPicker_stepCount,
                 res.getInteger(R.integer.default_stepSize));
         showLeadingZeros = typedArray.getBoolean(R.styleable.NumberPicker_showLeadingZeros,
                 res.getBoolean(R.bool.default_showLeadingZeros));

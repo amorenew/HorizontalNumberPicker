@@ -8,7 +8,7 @@
         <attr name="plusButtonText" format="string" />
         <attr name="minusButtonText" format="string" />
         <attr name="repeatDelay" format="integer" />
-        <attr name="stepSize" format="integer" />
+        <attr name="stepCount" format="integer" />
         <attr name="showLeadingZeros" format="boolean" />
         <attr name="pickerBackgroundColor" format="color" />
         <attr name="numberBackgroundColor" format="color" />
