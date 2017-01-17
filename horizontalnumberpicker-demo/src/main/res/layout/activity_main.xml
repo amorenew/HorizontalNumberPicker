@@ -10,24 +10,41 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
-  <com.hrules.horizontalnumberpicker.HorizontalNumberPicker
-      android:id="@+id/horizontal_number_picker1"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-  />
+    <com.hrules.horizontalnumberpicker.HorizontalNumberPicker
+        android:id="@+id/horizontal_number_picker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-  <com.hrules.horizontalnumberpicker.HorizontalNumberPicker
-      android:id="@+id/horizontal_number_picker2"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="10dp"
-      app:valueDescription="Man" />
+    <com.hrules.horizontalnumberpicker.HorizontalNumberPicker
+        android:id="@+id/horizontal_number_picker2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:valueDescription="Man" />
 
-  <com.hrules.horizontalnumberpicker.HorizontalNumberPicker
-      android:id="@+id/horizontal_number_picker3"
-      android:layout_width="120dp"
-      android:layout_height="40dp"
-      android:layout_marginTop="10dp"
-  />
+    <com.hrules.horizontalnumberpicker.HorizontalNumberPicker
+        android:id="@+id/horizontal_number_picker3"
+        android:layout_width="138dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        app:buttonTextBold="true"
+        app:buttonTextColor="#000"
+        app:buttonTextSize="18"
+        app:maxValue="4"
+        app:minValue="1"
+        app:numberBackgroundColor="@null"
+        app:numberTextBold="true"
+        app:numberTextColor="#000"
+        app:numberTextSize="18"
+        app:descriptionBackgroundColor="@null"
+        app:descriptionTextBold="false"
+        app:descriptionTextColor="#535353"
+        app:descriptionTextSize="15"
+        app:pickerBackgroundColor="@null"
+        app:showLeadingZeros="true"
+        app:titleUp="true"
+        app:value="1"
+        app:valueDescription="Man" />
 
 </LinearLayout>
