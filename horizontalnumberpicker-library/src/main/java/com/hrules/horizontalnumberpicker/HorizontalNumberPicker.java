@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v7.widget.CardView;
@@ -63,9 +64,9 @@ public class HorizontalNumberPicker extends LinearLayout {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        //if (isInEditMode()) {
-        //    return;
-        //}
+        if (isInEditMode()) {
+            return;
+        }
         LayoutInflater layoutInflater =
                 (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -108,7 +109,7 @@ public class HorizontalNumberPicker extends LinearLayout {
         textValueDescription.setText(valueDescriptionText);
         value = typedArray.getInt(R.styleable.NumberPicker_value,
                 res.getInteger(R.integer.default_value));
-        int pickerBackgroundColor = typedArray.getColor(R.styleable.NumberPicker_pickerBackgroundColor, Color.WHITE);
+        int pickerBackgroundColor = typedArray.getColor(R.styleable.NumberPicker_pickerBackgroundColor, Color.TRANSPARENT);
         setBackgroundColor(pickerBackgroundColor);
         int numberTextColor = typedArray.getColor(R.styleable.NumberPicker_numberTextColor, Color.BLACK);
         int descriptionTextColor = typedArray.getColor(R.styleable.NumberPicker_descriptionTextColor, Color.BLACK);
@@ -116,11 +117,11 @@ public class HorizontalNumberPicker extends LinearLayout {
         setDescriptionTextColor(descriptionTextColor);
         int buttonTextColor = typedArray.getColor(R.styleable.NumberPicker_buttonTextColor, Color.BLACK);
         setButtonTextColor(buttonTextColor);
-        int numberBackgroundColor = typedArray.getColor(R.styleable.NumberPicker_numberBackgroundColor, -1);
-        int descriptionBackgroundColor = typedArray.getColor(R.styleable.NumberPicker_descriptionBackgroundColor, -1);
+        int numberBackgroundColor = typedArray.getColor(R.styleable.NumberPicker_numberBackgroundColor, Color.TRANSPARENT);
+        int descriptionBackgroundColor = typedArray.getColor(R.styleable.NumberPicker_descriptionBackgroundColor, Color.TRANSPARENT);
         setNumberBackgroundColor(numberBackgroundColor);
         setDescriptionBackgroundColor(descriptionBackgroundColor);
-        int buttonBackgroundColor = typedArray.getColor(R.styleable.NumberPicker_buttonBackgroundColor, -1);
+        int buttonBackgroundColor = typedArray.getColor(R.styleable.NumberPicker_buttonBackgroundColor, Color.TRANSPARENT);
         setButtonBackgroundColor(buttonBackgroundColor);
         boolean numberTextBold = typedArray.getBoolean(R.styleable.NumberPicker_numberTextBold, true);
         boolean descriptionTextBold = typedArray.getBoolean(R.styleable.NumberPicker_descriptionTextBold, true);
@@ -172,12 +173,10 @@ public class HorizontalNumberPicker extends LinearLayout {
     }
 
     public void setButtonBackgroundColor(int color) {
-/*        if (color == 0 && isTitleUp) {
-        } else*/
-        if (color > 0) {
-            buttonMinus.setBackgroundColor(color);
-            buttonPlus.setBackgroundColor(color);
-        }
+        ((GradientDrawable) buttonMinus.getBackground()).setColor(color);
+        ((GradientDrawable) buttonMinus.getBackground()).setStroke(0, color);
+        ((GradientDrawable) buttonPlus.getBackground()).setColor(color);
+        ((GradientDrawable) buttonPlus.getBackground()).setStroke(0, color);
     }
 
     public void setNumberTextSize(int size) {

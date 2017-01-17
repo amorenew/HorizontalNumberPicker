@@ -17,39 +17,39 @@
         <Button
             android:id="@+id/button_minus"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="@null"
+            android:background="@drawable/round_fill"
             android:gravity="center"
             android:textAlignment="gravity"
             tools:text="-" />
 
         <TextView
             android:id="@+id/text_value"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="0"
+            android:layout_weight="1"
             android:gravity="center"
             tools:text="0" />
+
         <TextView
             android:id="@+id/text_description"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="5dp"
-            android:layout_weight="0"
+            android:layout_weight="1"
             android:gravity="center" />
+
         <Button
             android:id="@+id/button_plus"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="@null"
+            android:background="@drawable/round_fill"
             android:gravity="center"
             android:textAlignment="gravity"
             tools:text="+" />
